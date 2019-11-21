@@ -1,0 +1,6 @@
+SELECT AVG(grades_value) AS Average, c.courses_name
+FROM grades g
+RIGHT JOIN courses c
+ON c.courses_id = g.grades_course_id
+GROUP BY c.courses_name
+ORDER BY Average;

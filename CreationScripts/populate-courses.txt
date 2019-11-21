@@ -1,0 +1,19 @@
+USE university_manager_schema;
+
+INSERT INTO courses(courses_name, courses_teacher_id)
+VALUE ("Science 101", 1),
+    ("Science 401", 1),
+    ("Science 250", 1),
+    ("Science 301", 1),
+    ("Math 101", 2),
+    ("Math 401", 2),
+    ("Math 250", 2),
+    ("Math 301", 2),
+    ("English 101", 3),
+    ("English 401", 3),
+    ("English 250", 3),
+    ("English 301", 3),
+    ("Engineering 101", 4),
+    ("Engineering 401", 4),
+    ("Engineering 250", 4),
+    ("Engineering 301", 4);

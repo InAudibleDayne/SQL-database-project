@@ -1,0 +1,7 @@
+INSERT INTO students(students_first_name, students_last_name, students_email)
+VALUE ('Joseph', 'Gunderson', 'joeg@test.com'),
+('Sara', 'Gunderson', 'Sarag@test.com'),
+('Denise', 'Rubel', 'Denise.Rubel@test.com'),
+('Laura', 'Lang', 'll@test.com'),
+('Christa', 'Eris', 'christae@test.com'),
+('delila', 'puder', 'dpuder@test.com');

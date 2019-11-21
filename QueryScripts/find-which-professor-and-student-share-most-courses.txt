@@ -1,0 +1,23 @@
+WITH cte AS (
+	SELECT 
+		students.students_first_name, students.students_last_name,
+        professors.professors_name,
+        COUNT(distinct courses.courses_id) counter
+	FROM grades
+    JOIN students
+    ON grades.grades_student_id = students.students_id
+    JOIN courses
+    ON grades.grades_course_id = courses.courses_id
+    JOIN professors 
+    ON professors.professors_id = courses.courses_teacher_id
+    GROUP BY 
+		students.students_first_name, students.students_last_name,
+        professors.professors_name
+)
+
+SELECT *
+FROM cte
+WHERE cte.counter = (
+	SElECT MAX(counter)
+    FROM cte
+);

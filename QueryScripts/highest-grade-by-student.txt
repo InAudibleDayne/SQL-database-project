@@ -1,0 +1,5 @@
+SELECT MAX(g.grades_value), s.students_first_name
+FROM students s
+JOIN grades g
+ON g.grades_student_id = s.students_id
+GROUP BY s.students_first_name;

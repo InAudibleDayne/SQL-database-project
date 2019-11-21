@@ -1,0 +1,55 @@
+CREATE SCHEMA `university_manager_schema` ;
+
+CREATE TABLE `university_manager_schema`.`students` (
+  `students_id` INT NOT NULL AUTO_INCREMENT,
+  `students_first_name` VARCHAR(45) NOT NULL,
+  `students_last_name` VARCHAR(45) NOT NULL,
+  `students_email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`students_id`),
+  UNIQUE INDEX `students_id_UNIQUE` (`students_id` ASC) VISIBLE,
+  UNIQUE INDEX `students_email_UNIQUE` (`students_email` ASC) VISIBLE);
+
+CREATE TABLE `university_manager_schema`.`professors` (
+  `professors_id` INT NOT NULL AUTO_INCREMENT,
+  `professors_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`professors_id`),
+  UNIQUE INDEX `professors_id_UNIQUE` (`professors_id` ASC) VISIBLE;
+
+CREATE TABLE `university_manager_schema`.`courses` (
+  `courses_id` INT NOT NULL AUTO_INCREMENT,
+  `courses_name` VARCHAR(45) NOT NULL,
+  `courses_teacher_id` INT NOT NULL,
+  PRIMARY KEY (`courses_id`),
+  UNIQUE INDEX `courses_id_UNIQUE` (`courses_id` ASC) VISIBLE);
+
+ALTER TABLE `university_manager_schema`.`courses` 
+ADD INDEX `courses_teacher_id` (`courses_teacher_id` ASC) VISIBLE;
+
+ALTER TABLE `university_manager_schema`.`courses` 
+ADD CONSTRAINT `created_by`
+  FOREIGN KEY (`courses_teacher_id`)
+  REFERENCES `university_manager_schema`.`professors` (`professors_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+;
+
+
+CREATE TABLE `university_manager_schema`.`grades` (
+  `grades_id` INT NOT NULL AUTO_INCREMENT,
+  `grades_value` INT NOT NULL,
+  `grades_student_id` INT NOT NULL,
+  `grades_course_id` INT NOT NULL,
+  PRIMARY KEY (`grades_id`),
+  UNIQUE INDEX `grades_id_UNIQUE` (`grades_id` ASC) VISIBLE,
+  INDEX `grades_student_id_idx` (`grades_student_id` ASC) VISIBLE,
+  INDEX `grades_courses_id_idx` (`grades_course_id` ASC) VISIBLE,
+  CONSTRAINT `grades_student_id`
+    FOREIGN KEY (`grades_student_id`)
+    REFERENCES `university_manager_schema`.`students` (`students_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `grades_courses_id`
+    FOREIGN KEY (`grades_course_id`)
+    REFERENCES `university_manager_schema`.`courses` (`courses_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

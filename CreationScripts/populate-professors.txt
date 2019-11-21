@@ -1,0 +1,7 @@
+USE university_manager_schema;
+
+INSERT INTO professors(professors_name)
+VALUE ("McDougal"),
+("Johnson"),
+("Davis"),
+("Reggie");

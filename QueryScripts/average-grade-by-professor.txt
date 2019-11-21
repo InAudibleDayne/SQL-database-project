@@ -1,0 +1,7 @@
+SELECT AVG(g.grades_value), p.professors_name AS 'Professor'
+FROM grades g
+RIGHT JOIN courses c
+ON g.grades_course_id = c.courses_id
+LEFT JOIN professors p
+ON c.courses_teacher_id = p.professors_id
+GROUP BY p.professors_name;
